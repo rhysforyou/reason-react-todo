@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bsb -make-world -w",
+    "serve": "serve public -o",
     "build": "webpack -w",
     "clean": "bsb -clean-world"
   },
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "bs-platform": "^1.8.1",
+    "serve": "^6.0.6",
     "webpack": "^1.14.0"
   }
 }
