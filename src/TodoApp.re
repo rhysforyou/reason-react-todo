@@ -40,7 +40,7 @@ let renderItem update (item: TodoItem.item) =>
     onToggle=(update toggleItem)
     key=(string_of_int item.id) />;
 
-let renderItems update items =>
+let renderItemList update items =>
   items
   |> List.map (renderItem update)
   |> Array.of_list
@@ -71,7 +71,7 @@ let make _children => {
         (se "What to do")
         <Input onSubmit=(update addItem) />
       </div>
-      <div className="items"> (renderItems update items) </div>
+      <div className="items"> (renderItemList update items) </div>
       <div className="footer"> (se (itemCount items)) </div>
     </div>
 };
