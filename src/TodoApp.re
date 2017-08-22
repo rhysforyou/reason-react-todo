@@ -8,15 +8,6 @@ let se = ReasonReact.stringToElement;
 
 let component = ReasonReact.statefulComponent "TodoApp";
 
-let itemCount items => {
-  let length = List.length items;
-  switch length {
-  | 0 => "No Items"
-  | 1 => "1 Item"
-  | _ => string_of_int length ^ " items"
-  }
-};
-
 let lastId = ref 0;
 let addItem text ({state}: self) => {
   lastId := !lastId + 1;
@@ -43,16 +34,26 @@ let toggleItem ({id}: TodoItem.item) ({state}: self) => {
   }
 };
 
-let renderItems items update =>
+let renderItem update (item: TodoItem.item) =>
+    <TodoItem
+    item
+    onToggle=(update toggleItem)
+    key=(string_of_int item.id) />;
+
+let renderItems update items =>
   items
-  |> List.map (fun (item: TodoItem.item) =>
-      <TodoItem
-      item
-      onToggle=(update toggleItem)
-      key=(string_of_int item.id) />
-    )
+  |> List.map (renderItem update)
   |> Array.of_list
   |> ReasonReact.arrayToElement;
+
+let itemCount items => {
+  let length = List.length items;
+  switch length {
+  | 0 => "No Items"
+  | 1 => "1 Item"
+  | _ => string_of_int length ^ " items"
+  }
+};
 
 let make _children => {
   ...component,
@@ -70,7 +71,7 @@ let make _children => {
         (se "What to do")
         <Input onSubmit=(update addItem) />
       </div>
-      <div className="items"> (renderItems items update) </div>
+      <div className="items"> (renderItems update items) </div>
       <div className="footer"> (se (itemCount items)) </div>
     </div>
 };
