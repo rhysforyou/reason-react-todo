@@ -3,7 +3,7 @@
   comma. If this screws with your editor highlighting, please tell us by filing
   an issue! */
 {
-  "name" : "my-react-app",
+  "name" : "reason-react-todo",
   "reason" : {"react-jsx" : 2},
   "bs-dependencies": ["reason-react"],
   "sources": [

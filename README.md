@@ -1,5 +1,8 @@
-This is a repo with examples usages of [ReasonReact](https://github.com/reasonml/reason-react).
-Have something you don't understand? Join us on [Discord](https://discord.gg/reasonml)!
+# Reason React Todo
+
+This is a small project to show off ReactReason, based on [Jared Forsyth's](https://jaredforsyth.com/2017/07/05/a-reason-react-tutorial/) fantastic tutorial, though it builds a bit on that original example.
+
+---
 
 Run this project:
 
