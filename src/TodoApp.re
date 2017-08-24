@@ -1,5 +1,8 @@
+type filter = All | Completed | Incomplete;
+
 type state = {
   items: list TodoItem.item,
+  filter: filter
 };
 
 type self = ReasonReact.self state ReasonReact.noRetainedProps;
@@ -12,6 +15,7 @@ let lastId = ref 0;
 let addItem text ({state}: self) => {
   lastId := !lastId + 1;
   ReasonReact.Update {
+    ...state,
     items: [
       {
         id: !lastId,
@@ -25,6 +29,7 @@ let addItem text ({state}: self) => {
 
 let toggleItem ({id}: TodoItem.item) ({state}: self) => {
   ReasonReact.Update {
+    ...state,
     items: List.map
       (fun (item: TodoItem.item) => item.id === id
         ? {...item, completed: not item.completed}
@@ -33,6 +38,19 @@ let toggleItem ({id}: TodoItem.item) ({state}: self) => {
       state.items
   }
 };
+
+let setFilter filter _evt ({state}: self) =>
+  ReasonReact.Update {
+    ...state,
+    filter: filter
+  };
+
+let filterItems filter (items: list TodoItem.item) =>
+  switch filter {
+  | All => items
+  | Completed => List.filter (fun (item: TodoItem.item) => item.completed) items
+  | Incomplete => List.filter (fun (item: TodoItem.item) => not item.completed) items
+  };
 
 let renderItem update (item: TodoItem.item) =>
     <TodoItem
@@ -62,15 +80,25 @@ let make _children => {
       id: 0,
       title: "Write some things to do",
       completed: false
-    }]
+    }],
+    filter: All
   },
-  render: fun {state: {items}, update} =>
+  render: fun {state: {items, filter}, update} => {
+    let filteredItems = filterItems filter items;
     <div className="app">
       <div className="title">
         (se "What to do")
         <Input onSubmit=(update addItem) />
       </div>
-      <div className="items"> (renderItemList update items) </div>
-      <div className="footer"> (se (itemCount items)) </div>
+      <div className="items"> (renderItemList update filteredItems) </div>
+      <div className="footer">
+        <div className="filters">
+          <button onClick=(update (setFilter All))> (se "All") </button>
+          <button onClick=(update (setFilter Completed))> (se "Completed") </button>
+          <button onClick=(update (setFilter Incomplete))> (se "Incomplete") </button>
+        </div>
+        (se (itemCount filteredItems))
+      </div>
     </div>
+  }
 };
