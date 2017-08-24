@@ -48,8 +48,10 @@ let setFilter filter _evt ({state}: self) =>
 let filterItems filter (items: list TodoItem.item) =>
   switch filter {
   | All => items
-  | Completed => List.filter (fun (item: TodoItem.item) => item.completed) items
-  | Incomplete => List.filter (fun (item: TodoItem.item) => not item.completed) items
+  | Completed =>
+    List.filter (fun (item: TodoItem.item) => item.completed) items
+  | Incomplete =>
+    List.filter (fun (item: TodoItem.item) => not item.completed) items
   };
 
 let renderItem update (item: TodoItem.item) =>
@@ -93,14 +95,20 @@ let make _children => {
         (se "What to do")
         <Input onSubmit=(update addItem) />
         <div className="filters">
-          <button className=(filterButtonClass All filter) onClick=(update (setFilter All))>
+          <button
+            className=(filterButtonClass All filter)
+            onClick=(update (setFilter All))>
             (se "All")
           </button>
-          <button className=(filterButtonClass Completed filter) onClick=(update (setFilter Completed))>
+          <button
+            className=(filterButtonClass Completed filter)
+            onClick=(update (setFilter Completed))>
             (se "Completed")
           </button>
-          <button className=(filterButtonClass Incomplete filter) onClick=(update (setFilter Incomplete))> 
-            (se "Incomplete") 
+          <button
+            className=(filterButtonClass Incomplete filter)
+            onClick=(update (setFilter Incomplete))>
+            (se "Incomplete")
           </button>
         </div>
       </div>
