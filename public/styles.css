@@ -48,6 +48,27 @@ body {
   padding: 5px 10px;
 }
 
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  align-self: stretch;
+  margin-top: 20px;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  border-radius: 3px;
+}
+
+.filters button.active {
+  color: white;
+  background: black;
+}
+
 .item {
   display: flex;
   padding: 10px 20px;

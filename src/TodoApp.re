@@ -73,6 +73,9 @@ let itemCount items => {
   }
 };
 
+let filterButtonClass (filter: filter) (activeFilter: filter) =>
+  filter == activeFilter ? "active" : "inactive";
+
 let make _children => {
   ...component,
   initialState: fun () => {
@@ -89,14 +92,20 @@ let make _children => {
       <div className="title">
         (se "What to do")
         <Input onSubmit=(update addItem) />
+        <div className="filters">
+          <button className=(filterButtonClass All filter) onClick=(update (setFilter All))>
+            (se "All")
+          </button>
+          <button className=(filterButtonClass Completed filter) onClick=(update (setFilter Completed))>
+            (se "Completed")
+          </button>
+          <button className=(filterButtonClass Incomplete filter) onClick=(update (setFilter Incomplete))> 
+            (se "Incomplete") 
+          </button>
+        </div>
       </div>
       <div className="items"> (renderItemList update filteredItems) </div>
       <div className="footer">
-        <div className="filters">
-          <button onClick=(update (setFilter All))> (se "All") </button>
-          <button onClick=(update (setFilter Completed))> (se "Completed") </button>
-          <button onClick=(update (setFilter Incomplete))> (se "Incomplete") </button>
-        </div>
         (se (itemCount filteredItems))
       </div>
     </div>
