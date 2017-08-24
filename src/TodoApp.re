@@ -68,7 +68,6 @@ let make _children => {
     <div className="app">
       <div className="title">
         (se "What to do")
-        (se "What to do")
         <Input onSubmit=(update addItem) />
       </div>
       <div className="items"> (renderItemList update items) </div>
