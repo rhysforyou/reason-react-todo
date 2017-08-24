@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": " A (Reason) React Todo List ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "bsb -make-world -w",
     "serve": "serve public -o",
     "build": "webpack -w",
@@ -19,8 +19,13 @@
     "reason-react": ">=0.2.1"
   },
   "devDependencies": {
+    "bs-jest": "^0.1.0",
     "bs-platform": "^1.8.1",
+    "jest": "^20.0.4",
     "serve": "^6.0.6",
     "webpack": "^1.14.0"
+  },
+  "jest": {
+    "rootDir": "lib/js"
   }
 }

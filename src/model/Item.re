@@ -9,7 +9,7 @@ let itemCount (items: list item) => {
   switch length {
   | 0 => "No Items"
   | 1 => "1 Item"
-  | _ => string_of_int length ^ " items"
+  | _ => string_of_int length ^ " Items"
   }
 };
 
