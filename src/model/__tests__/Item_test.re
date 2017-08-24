@@ -45,4 +45,26 @@ describe "Item" (fun () => {
     test "does nothing if no item with the ID exists" (fun () =>
       expect (toggleCompletion twoItems 0) |> toEqual twoItems)
   });
+
+  describe "maxId" (fun () => {
+    test "returns the highest ID in a iten list" (fun () =>
+      expect (maxId twoItems) |> toBe 2)
+  });
+
+  describe "nextId" (fun () => {
+    test "returns the next sequential ID in a iten list" (fun () =>
+      expect (nextId twoItems) |> toBe 3)
+  });
+
+  describe "newItem" (fun () => {
+    test "creates an item with the provided title and the next ID" (fun () =>
+      expect (newItem twoItems "Test")
+        |> toEqual {id: 3, title: "Test", completed: false})
+  });
+
+  describe "addItem" (fun () => {
+    test "adds a new item to the start of the list" (fun () =>
+      expect (addItem oneItem "Second Item")
+        |> toEqual [incompleteItem, completedItem])
+  })
 });

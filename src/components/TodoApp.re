@@ -9,19 +9,10 @@ let se = ReasonReact.stringToElement;
 
 let component = ReasonReact.statefulComponent "TodoApp";
 
-let lastId = ref 0;
 let addItem text ({state}: self) => {
-  lastId := !lastId + 1;
   ReasonReact.Update {
     ...state,
-    items: [
-      {
-        id: !lastId,
-        title: text,
-        completed: false
-      },
-      ...state.items
-    ]
+    items: Item.addItem state.items text
   };
 };
 

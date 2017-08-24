@@ -26,4 +26,23 @@ let toggleCompletion items id =>
       ? {...item, completed: not item.completed}
       : item
     )
-    items
+    items;
+
+let maxId items =>
+  List.fold_left (fun max item => item.id > max ? item.id : max) 0 items;
+
+let nextId items =>
+  (maxId items) + 1;
+
+let newItem items title =>
+  {
+    title,
+    id: (nextId items),
+    completed: false
+  };
+
+let addItem items title =>
+  [
+    (newItem items title),
+    ...items
+  ];
