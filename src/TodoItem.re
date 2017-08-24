@@ -1,5 +1,5 @@
-let se = ReasonReact.stringToElement;
 let component = ReasonReact.statelessComponent "TodoItem";
+let se = ReasonReact.stringToElement;
 
 type item = {
   id: int,

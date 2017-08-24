@@ -1,8 +1,6 @@
-type filter = All | Completed | Incomplete;
-
 type state = {
   items: list TodoItem.item,
-  filter: filter
+  filter: FilterBar.filter
 };
 
 type self = ReasonReact.self state ReasonReact.noRetainedProps;
@@ -39,7 +37,7 @@ let toggleItem ({id}: TodoItem.item) ({state}: self) => {
   }
 };
 
-let setFilter filter _evt ({state}: self) =>
+let setFilter filter ({state}: self) =>
   ReasonReact.Update {
     ...state,
     filter: filter
@@ -47,10 +45,10 @@ let setFilter filter _evt ({state}: self) =>
 
 let filterItems filter (items: list TodoItem.item) =>
   switch filter {
-  | All => items
-  | Completed =>
+  | FilterBar.All => items
+  | FilterBar.Completed =>
     List.filter (fun (item: TodoItem.item) => item.completed) items
-  | Incomplete =>
+  | FilterBar.Incomplete =>
     List.filter (fun (item: TodoItem.item) => not item.completed) items
   };
 
@@ -75,9 +73,6 @@ let itemCount items => {
   }
 };
 
-let filterButtonClass (filter: filter) (activeFilter: filter) =>
-  filter == activeFilter ? "active" : "inactive";
-
 let make _children => {
   ...component,
   initialState: fun () => {
@@ -94,23 +89,9 @@ let make _children => {
       <div className="title">
         (se "What to do")
         <Input onSubmit=(update addItem) />
-        <div className="filters">
-          <button
-            className=(filterButtonClass All filter)
-            onClick=(update (setFilter All))>
-            (se "All")
-          </button>
-          <button
-            className=(filterButtonClass Completed filter)
-            onClick=(update (setFilter Completed))>
-            (se "Completed")
-          </button>
-          <button
-            className=(filterButtonClass Incomplete filter)
-            onClick=(update (setFilter Incomplete))>
-            (se "Incomplete")
-          </button>
-        </div>
+        <FilterBar
+          activeFilter=(filter)
+          onChange=(update setFilter) />
       </div>
       <div className="items"> (renderItemList update filteredItems) </div>
       <div className="footer">
