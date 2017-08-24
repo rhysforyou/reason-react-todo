@@ -28,12 +28,7 @@ let addItem text ({state}: self) => {
 let toggleItem ({id}: Item.item) ({state}: self) => {
   ReasonReact.Update {
     ...state,
-    items: List.map
-      (fun (item: Item.item) => item.id === id
-        ? {...item, completed: not item.completed}
-        : item
-      )
-      state.items
+    items: Item.toggleCompletion state.items id
   }
 };
 

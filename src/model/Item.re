@@ -19,3 +19,11 @@ let filterItems filter items =>
   | Filter.Completed => List.filter (fun item => item.completed) items
   | Filter.Incomplete => List.filter (fun item => not item.completed) items
   };
+
+let toggleCompletion items id =>
+  List.map
+    (fun item => item.id === id
+      ? {...item, completed: not item.completed}
+      : item
+    )
+    items

@@ -9,9 +9,9 @@ let oneItem = [completedItem];
 let twoItems = [completedItem, incompleteItem];
 
 describe "Item" (fun () => {
-  describe "itemCount" (fun () => {
-    open Expect;
+  open Expect;
 
+  describe "itemCount" (fun () => {
     test "describes no items" (fun () =>
       expect (itemCount noItems) |> toBe "No Items");
 
@@ -23,8 +23,6 @@ describe "Item" (fun () => {
   });
 
   describe "filterItems" (fun () => {
-    open Expect;
-
     test "filters to all items" (fun () =>
       expect (filterItems Filter.All twoItems) |> toEqual twoItems);
 
@@ -33,5 +31,18 @@ describe "Item" (fun () => {
 
     test "filters to incomplete items" (fun () =>
       expect (filterItems Filter.Incomplete twoItems) |> toEqual [incompleteItem]);
+  });
+
+  describe "toggleCompletion" (fun () => {
+    test "marks an incomplete item complete" (fun () =>
+      expect (toggleCompletion [incompleteItem] incompleteItem.id)
+        |> toEqual [{id: 2, title: "Second Item", completed: true}]);
+
+    test "marks an completed item incomplete" (fun () =>
+      expect (toggleCompletion [completedItem] completedItem.id)
+        |> toEqual [{id: 1, title: "First Item", completed: false}]);
+
+    test "does nothing if no item with the ID exists" (fun () =>
+      expect (toggleCompletion twoItems 0) |> toEqual twoItems)
   });
 });
