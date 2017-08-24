@@ -1,6 +1,8 @@
+open Types;
+
 type state = {
-  items: list TodoItem.item,
-  filter: FilterBar.filter
+  items: list item,
+  filter
 };
 
 type self = ReasonReact.self state ReasonReact.noRetainedProps;
@@ -25,11 +27,11 @@ let addItem text ({state}: self) => {
   };
 };
 
-let toggleItem ({id}: TodoItem.item) ({state}: self) => {
+let toggleItem {id} ({state}: self) => {
   ReasonReact.Update {
     ...state,
     items: List.map
-      (fun (item: TodoItem.item) => item.id === id
+      (fun item => item.id === id
         ? {...item, completed: not item.completed}
         : item
       )
@@ -43,20 +45,20 @@ let setFilter filter ({state}: self) =>
     filter: filter
   };
 
-let filterItems filter (items: list TodoItem.item) =>
+let filterItems filter items =>
   switch filter {
-  | FilterBar.All => items
-  | FilterBar.Completed =>
-    List.filter (fun (item: TodoItem.item) => item.completed) items
-  | FilterBar.Incomplete =>
-    List.filter (fun (item: TodoItem.item) => not item.completed) items
+  | All => items
+  | Completed =>
+    List.filter (fun item => item.completed) items
+  | Incomplete =>
+    List.filter (fun item => not item.completed) items
   };
 
-let renderItem update (item: TodoItem.item) =>
+let renderItem update item =>
     <TodoItem
-    item
-    onToggle=(update toggleItem)
-    key=(string_of_int item.id) />;
+      item
+      onToggle=(update toggleItem)
+      key=(string_of_int item.id) />;
 
 let renderItemList update items =>
   items

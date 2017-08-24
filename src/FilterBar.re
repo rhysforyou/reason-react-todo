@@ -1,4 +1,4 @@
-type filter = All | Completed | Incomplete;
+open Types;
 
 let component = ReasonReact.statelessComponent "FilterBar";
 let se = ReasonReact.stringToElement;

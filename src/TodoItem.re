@@ -1,11 +1,7 @@
+open Types;
+
 let component = ReasonReact.statelessComponent "TodoItem";
 let se = ReasonReact.stringToElement;
-
-type item = {
-  id: int,
-  title: string,
-  completed: bool,
-};
 
 let make item::(item: item) ::onToggle _children => {
   ...component,
