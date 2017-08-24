@@ -1,4 +1,4 @@
-open Types;
+open Filter;
 
 let component = ReasonReact.statelessComponent "FilterBar";
 let se = ReasonReact.stringToElement;

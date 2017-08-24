@@ -1,4 +1,4 @@
-open Types;
+open Item;
 
 let component = ReasonReact.statelessComponent "TodoItem";
 let se = ReasonReact.stringToElement;
