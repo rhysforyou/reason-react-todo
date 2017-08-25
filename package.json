@@ -9,7 +9,10 @@
     "serve": "serve public -o",
     "clean": "bsb -clean-world"
   },
-  "keywords": ["reason", "react"],
+  "keywords": [
+    "reason",
+    "react"
+  ],
   "author": "Rhys Powell",
   "license": "MIT",
   "dependencies": {
@@ -20,14 +23,20 @@
   "devDependencies": {
     "bs-jest": "^0.1.0",
     "bs-loader": "^1.6.0",
-    "bs-platform": "^1.8.2",
+    "bs-platform": "^1.9.0",
     "jest": "^20.0.4",
     "serve": "^6.0.6",
     "webpack": "^3.5.5"
   },
   "jest": {
-    "moduleFileExtensions": ["re", "js", "ml"],
-    "testMatch": ["**/src/**/*_test.re"],
+    "moduleFileExtensions": [
+      "re",
+      "js",
+      "ml"
+    ],
+    "testMatch": [
+      "**/src/**/*_test.re"
+    ],
     "transform": {
       ".(re|ml)": "bs-loader"
     }
