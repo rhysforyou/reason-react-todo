@@ -6,7 +6,6 @@ type state = {
 type self = ReasonReact.self state ReasonReact.noRetainedProps;
 
 let se = ReasonReact.stringToElement;
-
 let component = ReasonReact.statefulComponent "TodoApp";
 
 let addItem text ({state}: self) => {
@@ -30,10 +29,10 @@ let setFilter filter ({state}: self) =>
   };
 
 let renderItem update (item: Item.item) =>
-    <TodoItem
-      item
-      onToggle=(update toggleItem)
-      key=(string_of_int item.id) />;
+  <TodoItem
+    item
+    onToggle=(update toggleItem)
+    key=(string_of_int item.id) />;
 
 let renderItemList update items =>
   items
