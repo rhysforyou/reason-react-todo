@@ -28,18 +28,6 @@ let setFilter filter ({state}: self) =>
     filter: filter
   };
 
-let renderItem update (item: Item.item) =>
-  <TodoItem
-    item
-    onToggle=(update toggleItem)
-    key=(string_of_int item.id) />;
-
-let renderItemList update items =>
-  items
-  |> List.map (renderItem update)
-  |> Array.of_list
-  |> ReasonReact.arrayToElement;
-
 let make _children => {
   ...component,
   initialState: fun () => {
@@ -60,7 +48,9 @@ let make _children => {
           activeFilter=(filter)
           onChange=(update setFilter) />
       </div>
-      <div className="items"> (renderItemList update filteredItems) </div>
+      <TodoList
+        onToggle=(update toggleItem)
+        items=(filteredItems) />
       <div className="footer">
         (se (Item.itemCount filteredItems))
       </div>
