@@ -5,9 +5,8 @@
   "description": " A (Reason) React Todo List ",
   "scripts": {
     "test": "jest --watch --verbose",
-    "start": "bsb -make-world -w",
+    "start": "webpack -w",
     "serve": "serve public -o",
-    "build": "webpack -w",
     "clean": "bsb -clean-world"
   },
   "keywords": ["reason", "react"],
@@ -20,12 +19,17 @@
   },
   "devDependencies": {
     "bs-jest": "^0.1.0",
-    "bs-platform": "^1.8.1",
+    "bs-loader": "^1.6.0",
+    "bs-platform": "^1.8.2",
     "jest": "^20.0.4",
     "serve": "^6.0.6",
-    "webpack": "^1.14.0"
+    "webpack": "^3.5.5"
   },
   "jest": {
-    "rootDir": "lib/js"
+    "moduleFileExtensions": ["re", "js", "ml"],
+    "testMatch": ["**/src/**/*_test.re"],
+    "transform": {
+      ".(re|ml)": "bs-loader"
+    }
   }
 }
