@@ -9,6 +9,7 @@
     { "dir": "src/model" },
     { "dir": "src/model/__tests__", "type": "dev" },
     { "dir": "src/components" },
+    { "dir": "src/components/__tests__", "type": "dev" },
     { "dir": "src/containers" }
   ]
 }

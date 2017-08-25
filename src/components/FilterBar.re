@@ -4,12 +4,13 @@ let component = ReasonReact.statelessComponent "FilterBar";
 let se = ReasonReact.stringToElement;
 
 let filterButtonClass (filter: filter) (activeFilter: filter) =>
-  filter == activeFilter ? "active" : "inactive";
+  filter == activeFilter ? "filter active" : "filter inactive";
 
 let renderFilter activeFilter onChange filter =>
   <button
     className=(filterButtonClass filter activeFilter)
-    onClick=(fun _evt => onChange(filter))>
+    onClick=(fun _evt => onChange(filter))
+    key=(displayString filter)>
     (se (displayString filter))
   </button>;
 
