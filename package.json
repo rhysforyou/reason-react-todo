@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": " A (Reason) React Todo List ",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --watch --verbose",
     "start": "bsb -make-world -w",
     "serve": "serve public -o",
     "build": "webpack -w",

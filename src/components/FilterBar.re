@@ -10,20 +10,17 @@ let make ::activeFilter ::onChange _children => {
   ...component,
   render: fun _self =>
     <div className="filters">
-      <button
-        className=(filterButtonClass All activeFilter)
-        onClick=(fun _evt => onChange(All))>
-        (se "All")
-      </button>
-      <button
-        className=(filterButtonClass Completed activeFilter)
-        onClick=(fun _evt => onChange(Completed))>
-        (se "Completed")
-      </button>
-      <button
-        className=(filterButtonClass Incomplete activeFilter)
-        onClick=(fun _evt => onChange(Incomplete))>
-        (se "Incomplete")
-      </button>
+      (
+        [All, Completed, Incomplete]
+        |> List.map (fun filter =>
+            <button
+              className=(filterButtonClass filter activeFilter)
+              onClick=(fun _evt => onChange(filter))>
+              (se (string_of_filter filter))
+            </button>
+          )
+        |> Array.of_list
+        |> ReasonReact.arrayToElement
+      )
     </div>
 };
