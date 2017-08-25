@@ -7,12 +7,10 @@
     "test": "jest --watch --verbose",
     "start": "webpack -w",
     "serve": "serve public -o",
-    "clean": "bsb -clean-world"
+    "clean": "bsb -clean-world",
+    "make": "bsb -make-world"
   },
-  "keywords": [
-    "reason",
-    "react"
-  ],
+  "keywords": ["reason", "react"],
   "author": "Rhys Powell",
   "license": "MIT",
   "dependencies": {
@@ -29,14 +27,8 @@
     "webpack": "^3.5.5"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "re",
-      "js",
-      "ml"
-    ],
-    "testMatch": [
-      "**/src/**/*_test.re"
-    ],
+    "moduleFileExtensions": ["re", "js", "ml"],
+    "testMatch": ["**/src/**/*_test.re"],
     "transform": {
       ".(re|ml)": "bs-loader"
     }
