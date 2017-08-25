@@ -3,7 +3,9 @@ type filter =
   | Completed
   | Incomplete;
 
-let string_of_filter filter =>
+let allFilters = [All, Completed, Incomplete];
+
+let displayString filter =>
   switch filter {
   | All => "All"
   | Completed => "Completed"
