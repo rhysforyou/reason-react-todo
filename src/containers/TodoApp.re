@@ -45,12 +45,12 @@ let make _children => {
         (se "What to do")
         <Input onSubmit=(update addItem) />
         <FilterBar
-          activeFilter=(filter)
+          activeFilter=filter
           onChange=(update setFilter) />
       </div>
       <TodoList
         onToggle=(update toggleItem)
-        items=(filteredItems) />
+        items=filteredItems />
       <div className="footer">
         (se (Item.itemCount filteredItems))
       </div>

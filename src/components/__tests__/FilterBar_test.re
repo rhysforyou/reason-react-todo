@@ -1,8 +1,7 @@
 open Jest;
 
 let setup ::activeFilter=(Filter.All) ::onChange=(fun _filter => ()) () =>
-  Enzyme.shallow
-  <FilterBar activeFilter onChange />;
+  Enzyme.shallow <FilterBar activeFilter onChange />;
 
 let filters wrapper =>
   wrapper

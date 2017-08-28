@@ -6,13 +6,15 @@ let se = ReasonReact.stringToElement;
 let filterButtonClass (filter: filter) (activeFilter: filter) =>
   filter == activeFilter ? "filter active" : "filter inactive";
 
-let renderFilter activeFilter onChange filter =>
+let renderFilter activeFilter onChange filter => {
+  let filterName = displayString filter;
   <button
     className=(filterButtonClass filter activeFilter)
     onClick=(fun _evt => onChange(filter))
-    key=(displayString filter)>
-    (se (displayString filter))
+    key=filterName>
+    (se filterName)
   </button>;
+};
 
 let renderFilterList activeFilter onChange =>
   allFilters

@@ -14,7 +14,7 @@ let make item::(item: item) ::onToggle _children => {
         checked=(Js.Boolean.to_js_boolean item.completed)
         onChange=(fun _evt => (onToggle item))
       />
-      <label htmlFor=(id)>(se item.title)</label>
+      <label htmlFor=id>(se item.title)</label>
     </div>
   }
 };
