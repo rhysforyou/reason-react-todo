@@ -38,5 +38,13 @@ describe "FilterBar" (fun () => {
       let inactiveCount = wrapper |> inactiveFilters |> Enzyme.getLength;
       expect inactiveCount |> toBe 2;
     });
+
+    test "calls its onChange handler when a filter is clicked" (fun () => {
+      let wasCalled = ref false;
+      let wrapper = setup onChange::(fun _filter => wasCalled := true) ();
+      wrapper |> activeFilters |> Enzyme.first |> Enzyme.simulate "click";
+
+      expect !wasCalled |> toBe true;
+    });
   });
 });
