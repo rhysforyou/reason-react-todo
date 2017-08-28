@@ -29,6 +29,11 @@ describe "FilterBar" (fun () => {
       expect activeFilterText |> toContainString "All";
     });
 
+    test "only renders one active filter" (fun () => {
+      let activeFilterCount = wrapper |> activeFilters |> Enzyme.getLength;
+      expect activeFilterCount |> toBe 1;
+    });
+
     test "renders the other two filters with the .inactive class" (fun () => {
       let inactiveCount = wrapper |> inactiveFilters |> Enzyme.getLength;
       expect inactiveCount |> toBe 2;
