@@ -30,19 +30,21 @@ describe "FilterBar" (fun () => {
     });
 
     test "only renders one active filter" (fun () => {
+      open! Expect.Operators;
       let activeFilterCount = wrapper |> activeFilters |> Enzyme.getLength;
-      expect activeFilterCount |> toBe 1;
+      expect activeFilterCount == 1;
     });
 
     test "renders the other two filters with the .inactive class" (fun () => {
+      open! Expect.Operators;
       let inactiveCount = wrapper |> inactiveFilters |> Enzyme.getLength;
-      expect inactiveCount |> toBe 2;
+      expect inactiveCount == 2;
     });
 
     test "calls its onChange handler when a filter is clicked" (fun () => {
       let wasCalled = ref false;
       let wrapper = setup onChange::(fun _filter => wasCalled := true) ();
-      wrapper |> activeFilters |> Enzyme.first |> Enzyme.simulate "click";
+      wrapper |> filters |> Enzyme.first |> Enzyme.simulate "click";
 
       expect !wasCalled |> toBe true;
     });
