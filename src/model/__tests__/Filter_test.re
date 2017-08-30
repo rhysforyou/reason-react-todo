@@ -1,7 +1,7 @@
 open Filter;
 open Jest;
 
-describe "filter" (fun () => {
+describe "Filter" (fun () => {
   open Expect;
 
   describe "displayString" (fun () => {
