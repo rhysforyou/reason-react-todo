@@ -31,13 +31,13 @@ describe "FilterBar" (fun () => {
 
     test "only renders one active filter" (fun () => {
       open! Expect.Operators;
-      let activeFilterCount = wrapper |> activeFilters |> Enzyme.getLength;
+      let activeFilterCount = wrapper |> activeFilters |> Enzyme.length;
       expect activeFilterCount == 1;
     });
 
     test "renders the other two filters with the .inactive class" (fun () => {
       open! Expect.Operators;
-      let inactiveCount = wrapper |> inactiveFilters |> Enzyme.getLength;
+      let inactiveCount = wrapper |> inactiveFilters |> Enzyme.length;
       expect inactiveCount == 2;
     });
 
