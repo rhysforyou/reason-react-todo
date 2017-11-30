@@ -1,30 +1,32 @@
 type state = string;
-let component = ReasonReact.statefulComponent "Input";
 
-let valueFromEvent evt: string =>
-  (evt
-    |> ReactEventRe.Form.target
-    |> ReactDOMRe.domElementToObj
-  )##value;
+let component = ReasonReact.statefulComponent("Input");
 
-let make ::onSubmit _ => {
+let valueFromEvent = (evt) : string => (
+                                         evt
+                                         |> ReactEventRe.Form.target
+                                         |> ReactDOMRe.domElementToObj
+                                       )##value;
+
+let make = (~onSubmit, _) => {
   ...component,
-  initialState: fun () => "",
-  render: fun {state: text, update} =>
+  initialState: () => "",
+  render: ({state: text, update}) =>
     <input
       value=text
       _type="text"
       placeholder="Write something to do"
-      onChange=(update (fun evt _ =>
-        ReasonReact.Update (valueFromEvent evt)
-      ))
-      onKeyDown=(update (fun evt {state: text} =>
-        if (ReactEventRe.Keyboard.key evt == "Enter") {
-          onSubmit text;
-          ReasonReact.Update "";
-        } else {
-          ReasonReact.NoUpdate
-        }
-      ))
+      onChange=(update((evt, _) => ReasonReact.Update(valueFromEvent(evt))))
+      onKeyDown=(
+        update(
+          (evt, {state: text}) =>
+            if (ReactEventRe.Keyboard.key(evt) == "Enter") {
+              onSubmit(text);
+              ReasonReact.Update("")
+            } else {
+              ReasonReact.NoUpdate
+            }
+        )
+      )
     />
 };
