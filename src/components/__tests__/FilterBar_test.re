@@ -3,11 +3,13 @@ open Jest;
 let setup = (~activeFilter=Filter.All, ~onChange=(_filter) => (), ()) =>
   Enzyme.shallow(<FilterBar activeFilter onChange />);
 
-let filters = (wrapper) => wrapper |> Enzyme.find(".filters") |> Enzyme.children;
+let filters = (wrapper) =>
+  wrapper |> Enzyme.find(".filters") |> Enzyme.children;
 
 let activeFilters = (wrapper) => wrapper |> filters |> Enzyme.find(".active");
 
-let inactiveFilters = (wrapper) => wrapper |> filters |> Enzyme.find(".inactive");
+let inactiveFilters = (wrapper) =>
+  wrapper |> filters |> Enzyme.find(".inactive");
 
 describe(
   "FilterBar",
@@ -28,7 +30,8 @@ describe(
             "only renders one active filter",
             () => {
               open! Expect.Operators;
-              let activeFilterCount = wrapper |> activeFilters |> Enzyme.length;
+              let activeFilterCount =
+                wrapper |> activeFilters |> Enzyme.length;
               expect(activeFilterCount) == 1
             }
           );
@@ -44,7 +47,8 @@ describe(
             "calls its onChange handler when a filter is clicked",
             () => {
               let wasCalled = ref(false);
-              let wrapper = setup(~onChange=(_filter) => wasCalled := true, ());
+              let wrapper =
+                setup(~onChange=(_filter) => wasCalled := true, ());
               wrapper |> filters |> Enzyme.first |> Enzyme.simulate("click");
               expect(wasCalled^) |> toBe(true)
             }

@@ -19,9 +19,18 @@ describe(
     describe(
       "itemCount",
       () => {
-        test("describes no items", () => expect(itemCount(noItems)) |> toBe("No Items"));
-        test("describes one item", () => expect(itemCount(oneItem)) |> toBe("1 Item"));
-        test("describes two items", () => expect(itemCount(twoItems)) |> toBe("2 Items"))
+        test(
+          "describes no items",
+          () => expect(itemCount(noItems)) |> toBe("No Items")
+        );
+        test(
+          "describes one item",
+          () => expect(itemCount(oneItem)) |> toBe("1 Item")
+        );
+        test(
+          "describes two items",
+          () => expect(itemCount(twoItems)) |> toBe("2 Items")
+        )
       }
     );
     describe(
@@ -33,11 +42,15 @@ describe(
         );
         test(
           "filters to completed items",
-          () => expect(filterItems(Filter.Completed, twoItems)) |> toEqual([completedItem])
+          () =>
+            expect(filterItems(Filter.Completed, twoItems))
+            |> toEqual([completedItem])
         );
         test(
           "filters to incomplete items",
-          () => expect(filterItems(Filter.Incomplete, twoItems)) |> toEqual([incompleteItem])
+          () =>
+            expect(filterItems(Filter.Incomplete, twoItems))
+            |> toEqual([incompleteItem])
         )
       }
     );
@@ -64,7 +77,11 @@ describe(
     );
     describe(
       "maxId",
-      () => test("returns the highest ID in a iten list", () => expect(maxId(twoItems)) |> toBe(2))
+      () =>
+        test(
+          "returns the highest ID in a iten list",
+          () => expect(maxId(twoItems)) |> toBe(2)
+        )
     );
     describe(
       "nextId",
@@ -80,7 +97,8 @@ describe(
         test(
           "creates an item with the provided title and the next ID",
           () =>
-            expect(newItem(twoItems, "Test")) |> toEqual({id: 3, title: "Test", completed: false})
+            expect(newItem(twoItems, "Test"))
+            |> toEqual({id: 3, title: "Test", completed: false})
         )
     );
     describe(
@@ -88,7 +106,9 @@ describe(
       () =>
         test(
           "adds a new item to the start of the list",
-          () => expect(addItem(oneItem, "Second Item")) |> toEqual([incompleteItem, completedItem])
+          () =>
+            expect(addItem(oneItem, "Second Item"))
+            |> toEqual([incompleteItem, completedItem])
         )
     )
   }

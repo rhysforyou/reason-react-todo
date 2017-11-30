@@ -25,5 +25,6 @@ let renderFilterList = (activeFilter, onChange) =>
 
 let make = (~activeFilter, ~onChange, _children) => {
   ...component,
-  render: (_self) => <div className="filters"> (renderFilterList(activeFilter, onChange)) </div>
+  render: (_self) =>
+    <div className="filters"> (renderFilterList(activeFilter, onChange)) </div>
 };

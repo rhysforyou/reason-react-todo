@@ -13,9 +13,13 @@ let addItem = (text, {state}: self) =>
   ReasonReact.Update({...state, items: Item.addItem(state.items, text)});
 
 let toggleItem = ({id}: Item.item, {state}: self) =>
-  ReasonReact.Update({...state, items: Item.toggleCompletion(state.items, id)});
+  ReasonReact.Update({
+    ...state,
+    items: Item.toggleCompletion(state.items, id)
+  });
 
-let setFilter = (filter, {state}: self) => ReasonReact.Update({...state, filter});
+let setFilter = (filter, {state}: self) =>
+  ReasonReact.Update({...state, filter});
 
 let make = (_children) => {
   ...component,

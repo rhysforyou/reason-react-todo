@@ -21,9 +21,13 @@ let filterItems = (filter, items) =>
   };
 
 let toggleCompletion = (items, id) =>
-  List.map((item) => item.id === id ? {...item, completed: ! item.completed} : item, items);
+  List.map(
+    (item) => item.id === id ? {...item, completed: ! item.completed} : item,
+    items
+  );
 
-let maxId = (items) => List.fold_left((max, item) => item.id > max ? item.id : max, 0, items);
+let maxId = (items) =>
+  List.fold_left((max, item) => item.id > max ? item.id : max, 0, items);
 
 let nextId = (items) => maxId(items) + 1;
 

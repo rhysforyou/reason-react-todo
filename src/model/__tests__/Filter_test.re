@@ -9,7 +9,10 @@ describe(
       describe(
         "displayString",
         () => {
-          test("describes the All filter", () => expect(displayString(All)) |> toBe("All"));
+          test(
+            "describes the All filter",
+            () => expect(displayString(All)) |> toBe("All")
+          );
           test(
             "describes the Completed filter",
             () => expect(displayString(Completed)) |> toBe("Completed")
