@@ -6,11 +6,14 @@
   "scripts": {
     "test": "bsb -make-world && jest --verbose",
     "test:watch": "jest --watch --verbose",
-    "start": "concurrently \"npm run server\" \"npm run watch\"",
+    "start":
+      "npm run build:bsb && concurrently \"npm run server\" \"npm run watch\"",
     "server": "webpack-dev-server --mode development",
     "watch": "bsb -w",
     "clean": "bsb -clean-world",
-    "build": "bsb -make-world && webpack --mode production"
+    "build": "npm run build:bsb && npm run build:webpack",
+    "build:bsb": "bsb -make-world",
+    "build:webpack": "webpack --mode production"
   },
   "keywords": ["reason", "react"],
   "author": "Rhys Powell",
