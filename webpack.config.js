@@ -4,10 +4,12 @@ module.exports = {
   entry: './src/Main.bs.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'main.js'
+    filename: 'main.js',
+    publicPath: '/'
   },
-  resolve: {
-    // Add .re and .ml to the list of extensions webpack recognizes
-    extensions: ['.re', '.ml', '.js']
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
+    open: true
   }
 }

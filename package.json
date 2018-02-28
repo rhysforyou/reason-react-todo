@@ -4,11 +4,13 @@
   "version": "0.1.0",
   "description": " A (Reason) React Todo List ",
   "scripts": {
-    "test": "jest --watch --verbose",
-    "start": "webpack -w",
-    "serve": "serve public -o",
+    "test": "bsb -make-world && jest --verbose",
+    "test:watch": "jest --watch --verbose",
+    "start": "concurrently \"npm run server\" \"npm run watch\"",
+    "server": "webpack-dev-server --mode development",
+    "watch": "bsb -w",
     "clean": "bsb -clean-world",
-    "make": "bsb -make-world"
+    "build": "bsb -make-world && webpack --mode production"
   },
   "keywords": ["reason", "react"],
   "author": "Rhys Powell",
@@ -21,9 +23,11 @@
     "bs-enzyme": "^0.2.0",
     "bs-jest": "^0.1.0",
     "bs-platform": "^2.1.0",
+    "concurrently": "^3.5.1",
     "jest": "^20.0.4",
-    "serve": "^6.0.6",
-    "webpack": "^3.5.5"
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.1.0"
   },
   "jest": {
     "moduleFileExtensions": ["js"],
